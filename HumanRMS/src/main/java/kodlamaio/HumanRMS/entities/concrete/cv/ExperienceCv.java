@@ -7,9 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,8 @@ import lombok.NoArgsConstructor;
 @Table(name="experience_cv")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
+
 public class ExperienceCv {
 	
 	
@@ -30,19 +34,21 @@ public class ExperienceCv {
 	@Column(name="previous_company")
 	private String previousCompany;
 	
-	@Column(name="previous_position")
-	private String previousPosition;
-	
-	@Column(name="last_job_entry_date")
+	@Column(name="start_date")
 	private LocalDate lastJobEntry;
 	
-	@Column(name="last_job_exit_date")
+	@Column(name="quit_date")
 	private LocalDate lastJobExit;
 	
 	@Column(name="is_quit_job")
 	private boolean isQuitJob;
 	
+	@Column(name="position")
+	private String position;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "experienceCv")
 	private List<Cv> cv;
+	
+	
 }

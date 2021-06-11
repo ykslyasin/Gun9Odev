@@ -13,6 +13,10 @@ import kodlamaio.HumanRMS.business.abstracts.Employee.EmployeeService;
 import kodlamaio.HumanRMS.core.utilities.results.DataResult;
 import kodlamaio.HumanRMS.core.utilities.results.Result;
 import kodlamaio.HumanRMS.entities.concrete.Employees;
+import kodlamaio.HumanRMS.entities.concrete.cv.Cv;
+import kodlamaio.HumanRMS.entities.concrete.cv.EducationStatusCv;
+import kodlamaio.HumanRMS.entities.concrete.cv.ExperienceCv;
+import kodlamaio.HumanRMS.entities.concrete.cv.ForeignLanguageCv;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -38,5 +42,10 @@ public class EmployeeController {
 	@PostMapping("/registration")
 	public Result registration(@RequestBody Employees employees) {
 		return this.employeeService.registration(employees);
+	}
+	
+	@PostMapping("/addCv")
+	public Result addCv(@RequestBody Cv cv , @RequestBody ExperienceCv experienceCv , @RequestBody EducationStatusCv educationStatusCv , @RequestBody ForeignLanguageCv foreignLanguageCv , @RequestBody Employees employees) {
+		return this.employeeService.addCv(cv, experienceCv, educationStatusCv, foreignLanguageCv, employees);
 	}
 }

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,12 +21,23 @@ import lombok.NoArgsConstructor;
 @Table(name="education_status_cv")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
+
 public class EducationStatusCv {
 	
 	@Id
 	@GeneratedValue
 	@Column(name="id")
 	private int id;
+	
+	@Column(name="primary_school_name")
+	private String primarySchoolName;
+	
+	@Column(name="high_school_name")
+	private String highSchoolName;
+	
+	@Column(name="university_name")
+	private String universityName;
 	
 	@Column(name="primary_school_education_date")
 	private LocalDate primarySchoolGraduationDate;
@@ -38,8 +51,6 @@ public class EducationStatusCv {
 	@Column(name="is_graduate")
 	private boolean isGraduate;
 	
-	@Column(name="school_name")
-	private String schoolName;
 	
 	@Column(name="department")
 	private String department;
@@ -47,4 +58,5 @@ public class EducationStatusCv {
 	@JsonIgnore
 	@OneToMany(mappedBy = "educationStatusCv")
 	private List<Cv> cv;
+	
 }

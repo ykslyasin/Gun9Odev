@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import kodlamaio.HumanRMS.entities.concrete.Employees;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,9 @@ public class Cv {
 	@Column(name="cover_letter")
 	private String coverLetter;
 	
+	@Column(name="programming_knowledge")
+	private String programmingLanguage;
+	
 	@ManyToOne()
 	@JoinColumn(name="education_status_id")
 	private EducationStatusCv educationStatusCv;
@@ -47,6 +51,8 @@ public class Cv {
 	private ForeignLanguageCv foreignLanguageCv;
 	
 	@ManyToOne()
-	@JoinColumn(name="programming_knowledge_id")
-	private ProgrammingKnowledgeCv programmingKnowledgeCv;
+	@JoinColumn(name="employee_id")
+	private Employees employees;
+	
+	
 }

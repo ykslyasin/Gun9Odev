@@ -27,7 +27,7 @@ public class CvController {
 	
 	@GetMapping("/getall")
 	public DataResult<List<Cv>> getAll(){
-		return this.cvService.getAll();
+		return this.cvService.getAllCv();
 	}
 	
 	@PostMapping("/add")
